@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from petapp.models import *
 
 # Register your models here.
