@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'petapp',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -77,9 +78,14 @@ WSGI_APPLICATION = 'pet_app.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'petapp',
+        'USER': 'root',
+        'PASSWORD': 'test123',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
     }
+
 }
 
 
