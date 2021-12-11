@@ -1,10 +1,10 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 
 # Create your models here.
-class User(models.Model):
-    username = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar_url = models.TextField(default=None)
     address = models.TextField()
     phone = models.CharField(max_length=20)
@@ -12,7 +12,8 @@ class User(models.Model):
 
 
 class Message(models.Model):
-    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=None)
+    sender_id = models.ForeignKey(Profile, on_delete=models.DO_NOTHING, default=None, related_name='sender')
+    recipient_id = models.ForeignKey(Profile, on_delete=models.DO_NOTHING, default=None, related_name='recipient')
     content = models.TextField()
 
 
@@ -26,6 +27,7 @@ class ItemType(models.Model):
 
 class Item(models.Model):
     name = models.CharField(max_length=50)
+    photo_url = models.TextField(default=None)
     description = models.TextField(default=None)
     brand_id = models.ForeignKey(ItemBrand, on_delete=models.DO_NOTHING, default=None)
     type_id = models.ForeignKey(ItemType, on_delete=models.DO_NOTHING, default=None)
@@ -33,15 +35,12 @@ class Item(models.Model):
 
 class ItemNeed(models.Model):
     item_id = models.ForeignKey(Item, on_delete=models.DO_NOTHING, default=None)
-    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=None)
-    description = models.TextField(default=None)
+    user_id = models.ForeignKey(Profile, on_delete=models.DO_NOTHING, default=None)
     amount = models.IntegerField()
-    brand_id = models.ForeignKey(ItemBrand, on_delete=models.DO_NOTHING, default=None)
-    type_id = models.ForeignKey(ItemType, on_delete=models.DO_NOTHING, default=None)
 
 
 class Listing(models.Model):
     item_id = models.ForeignKey(Item, on_delete=models.DO_NOTHING, default=None)
-    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=None)
+    user_id = models.ForeignKey(Profile, on_delete=models.DO_NOTHING, default=None)
     price = models.FloatField()
     posted = models.BooleanField()
