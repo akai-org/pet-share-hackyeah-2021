@@ -2,15 +2,14 @@ from django.contrib.auth.models import User
 from django.db import models
 
 
-# Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar_url = models.URLField()
     city = models.TextField(max_length=40, default=None)
-    address = models.TextField(max_length=40, default=None)
+    address = models.TextField(max_length=40, blank=True)
     phone = models.CharField(max_length=20)
     is_organization = models.BooleanField()
-    nip = models.TextField(default=None)
+    nip = models.TextField(blank=True)
 
 
 class Message(models.Model):
