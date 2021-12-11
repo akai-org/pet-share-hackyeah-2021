@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from petapp.models import ItemType, Profile
+from petapp.models import *
 
 @api_view(http_method_names=['GET'])
 def get_all_item_types(request):
@@ -22,3 +22,9 @@ def users(request):
         profile['user'] = user
         Profile(**profile).save()
         return Response(Profile.objects.all().values())
+
+@api_view(http_method_names=['GET'])
+def items(request):
+    if request.method == "GET":
+        return Response(Item.objects.all().values())
+

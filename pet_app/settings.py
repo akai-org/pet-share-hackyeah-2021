@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'petapp',
     'rest_framework',
+    'django_seed',
 ]
 
 REST_FRAMEWORK = {
