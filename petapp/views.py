@@ -3,7 +3,6 @@ from rest_framework.response import Response
 
 from petapp.models import *
 
-
 @api_view(http_method_names=['GET'])
 def item_types(request):
     return Response(ItemType.objects.all().values())

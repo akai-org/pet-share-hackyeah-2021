@@ -45,6 +45,8 @@ INSTALLED_APPS = [
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
     # or allow read-only access for unauthenticated users.
+    #'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+
     'DEFAULT_PERMISSION_CLASSES': [
     ]
 }
@@ -88,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'petapp',
         'USER': 'root',
-        'PASSWORD': '',
+        'PASSWORD': 'test123',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
         'PORT': '3306',
     }

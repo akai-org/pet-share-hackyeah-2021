@@ -28,8 +28,8 @@ class ItemType(models.Model):
 
 class Item(models.Model):
     name = models.CharField(max_length=50)
-    photo_url = models.URLField()
-    post_date = models.DateField()
+    photo_url = models.URLField(default=None)
+    create_date = models.DateTimeField(auto_now_add=True, blank=True)
     expiration_date = models.DateField(default=None)
     description = models.TextField(default=None)
     brand_id = models.ForeignKey(ItemBrand, on_delete=models.DO_NOTHING, default=None)
@@ -46,3 +46,13 @@ class ItemListing(models.Model):
     item_id = models.ForeignKey(Item, on_delete=models.DO_NOTHING, default=None)
     user_id = models.ForeignKey(Profile, on_delete=models.DO_NOTHING, default=None)
     price = models.FloatField()
+
+
+class FavoritesItem(models.Model):
+    item_id = models.ForeignKey(Item, on_delete=models.DO_NOTHING, default=None)
+    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=None)
+
+
+class FavoritesUsers(models.Model):
+    user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=None, related_name="user_like")
+    user_target = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=None, related_name="victim")
