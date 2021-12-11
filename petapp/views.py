@@ -1,3 +1,9 @@
-from django.http import HttpResponse
-from django.views import View
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
+from petapp.models import ItemType
+
+
+@api_view(http_method_names=['GET'])
+def get_all_item_types(request):
+    return Response(ItemType.objects.all().values())
