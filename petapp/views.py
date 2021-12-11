@@ -4,7 +4,6 @@ from rest_framework.response import Response
 
 from petapp.models import ItemType, Profile
 
-
 @api_view(http_method_names=['GET'])
 def get_all_item_types(request):
     return Response(ItemType.objects.all().values())
