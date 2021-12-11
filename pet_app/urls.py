@@ -17,9 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 
-from petapp.views import get_all_item_types
+from petapp.views import get_all_item_types, users
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('item-types/', get_all_item_types)
+    path('item-types/', get_all_item_types),
+    path('users/', users)
 ]

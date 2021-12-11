@@ -6,9 +6,11 @@ from django.db import models
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     avatar_url = models.URLField()
-    address = models.TextField()
+    city = models.TextField(max_length=40, default=None)
+    address = models.TextField(max_length=40, default=None)
     phone = models.CharField(max_length=20)
     is_organization = models.BooleanField()
+    nip = models.TextField(default=None)
 
 
 class Message(models.Model):

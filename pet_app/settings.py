@@ -48,7 +48,6 @@ REST_FRAMEWORK = {
     #'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
 
     'DEFAULT_PERMISSION_CLASSES': [
-
     ]
 }
 
