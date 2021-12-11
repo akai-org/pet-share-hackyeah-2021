@@ -22,3 +22,9 @@ def profiles(request):
             profile = Profile.objects.create(**profile)
             return profile
         return Response()
+      
+      
+@api_view(http_method_names=['GET'])
+def items(request):
+    if request.method == "GET":
+        return Response(Item.objects.all().values())
